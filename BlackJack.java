@@ -8,24 +8,14 @@
 import java.util.Scanner;
 import java.lang.Math;
 public class BlackJack{
-    int handNum = 2;
-    double firstCard= Math.random();
-    int card1 = (int)((firstCard * 11) + 1);
-    double secondCard = Math.random();
-    int card2 = (int)((secondCard * 11) + 1);
-    int total = card1 + card2;
-    double dealerUp = Math.random();
-    int dealerFaceUp = (int)((dealerUp * 11) + 1);
-    double dealer2nd = Math.random();
-    int dealerFaceDown = (int)((dealer2nd * 11) + 1);
-    int dealerTotal = dealerFaceUp + dealerFaceDown;
+    
     public void start(){
         System.out.println("Your first card is:" + card1);
         System.out.println("Your second card is:" + card2);
         System.out.println("Your total is:" + total);
         System.out.println("The dealer's first card is:" + dealerFaceUp );
     }
-    public void hit(){
+    public void Hit(){
         double nextCard = Math.random();
         int card = (int)((nextCard * 11) + 1);
         if(handNum <4){
