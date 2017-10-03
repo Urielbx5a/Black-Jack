@@ -10,10 +10,12 @@ public class hand
     private int total;
     private int card1;
     private int card2;
+    
     public hand(){
         total = 0;
         card1 = Hit();
         card2 = Hit();
+       
  
     }
     
@@ -21,6 +23,7 @@ public class hand
         int card = (int)((Math.random() * 11) + 1);
         total += card;
         return card;
+        
     }
     
     public int getTotal(){
@@ -34,4 +37,6 @@ public class hand
     public int getCard2(){
         return card2;
     }
+    
+    
 }

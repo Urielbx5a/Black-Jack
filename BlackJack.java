@@ -8,57 +8,68 @@
 import java.util.Scanner;
 import java.lang.Math;
 public class BlackJack{
+    private static hand player = new hand();
+    private static hand dealer = new hand();
+    private static int hand = 2;
     
-    public void start(){
-        System.out.println("Your first card is:" + card1);
-        System.out.println("Your second card is:" + card2);
-        System.out.println("Your total is:" + total);
-        System.out.println("The dealer's first card is:" + dealerFaceUp );
+    public static void start(){
+        System.out.println("Your first card is:" + player.getCard1());
+        System.out.println("Your second card is:" + player.getCard2());
+        System.out.println("Your total is:" + player.getTotal());
+        System.out.println("The dealer's first card is:" + dealer.getCard1());
     }
-    public void Hit(){
-        double nextCard = Math.random();
-        int card = (int)((nextCard * 11) + 1);
-        if(handNum <4){
-            total = total + card;
-            handNum = handNum + 1;
-            System.out.println("You have a " + card);
-            System.out.println("Your new total is:" + total);
+
+    public static void Hit(){
+
+        if(hand < 4){
+            System.out.println("Your new card is:" + player.Hit());
+            System.out.println("Your new total is:" + player.getTotal());
+            hand += 1;
         } else{
             System.out.println("You could only hold 4 cards.");
         }
-        if(total > 21){
+        if(player.getTotal()> 21){
             System.out.println("You are a bust");
         }
     }
-    public void Stay_End(){
-        if (dealerTotal < 16){
-            double dealerCard = Math.random();
-            int dealer = (int)((dealerCard * 11) + 1);
-            dealerTotal = dealerTotal + dealer;
+
+    public static void Stay_End(){
+        while (dealer.getTotal() < 16){
+            dealer.Hit();
         }
-        System.out.println("The Dealer has a total of " + dealerTotal);
-        System.out.println("Your total is " + total);
-        if (dealerTotal > 21){
+        System.out.println("The Dealer has a total of " + dealer.getTotal());
+        System.out.println("Your total is " + player.getTotal());
+        if (dealer.getTotal() > 21){
             System.out.println("The Dealer has bust");
         }
-        if (total > 21){
-            if(dealerTotal > 21){
+        if (player.getTotal() > 21){
+            if(dealer.getTotal() > 21){
                 System.out.println("You and the dealer both lose.");
-            } else if (dealerTotal <= 21){
+            } else if (dealer.getTotal() <= 21){
                 System.out.println("The dealer wins");
             }
-        } else if(total <= 21){
-            if(dealerTotal <= 21){
-                if (total > dealerTotal){
+        } else if(player.getTotal() <= 21){
+            if(dealer.getTotal() <= 21){
+                if (player.getTotal() > dealer.getTotal()){
                     System.out.println("You win");                    
-                } else if(dealerTotal > total){
+                } else if(dealer.getTotal() > player.getTotal()){
                     System.out.println("The Dealer wins");
                 } else{
                     System.out.println("It's a tie");
                 }
-            } else if (dealerTotal > 21){
+            } else if (dealer.getTotal() > 21){
                 System.out.println("You win");
             }
+        }
+    }
+
+    public static void main(){
+        Scanner scanner =  new Scanner(System.in);
+        BlackJack.start();
+        boolean playerTurn = true;
+        while(playerTurn){
+           System.out.println("Hit or Stay");
+           String input = scanner.next();
         }
     }
 }
